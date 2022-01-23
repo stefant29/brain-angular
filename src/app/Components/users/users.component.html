@@ -1,0 +1,46 @@
+<h4 style="text-align: center;">
+    Results
+</h4>
+
+<div class="container">
+    <div *ngFor="let user of users; index as i" class="card text-center m-2">
+        <div class="card-header" style="padding-top: 0; padding-bottom: 0">
+            <div class="row">
+                <div class="col-2 p-2">
+                    <div class="profile-picture" style="width: 100px; height: 100px;">
+                        <i *ngIf="!user.$profilePhotoUrl" class="fa fa-id-badge" style="font-size: 5rem;"></i>
+                        <img *ngIf="user.$profilePhotoUrl" src="{{user.$profilePhotoUrl}}" alt=""
+                            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    </div>
+                </div>
+                <div class="col-10" style="margin-top: auto; text-align: left; margin-bottom: auto;">
+                    <h5 class="card-title">
+                        {{user.$title}}
+                        {{user.$firstName}}
+                        {{user.$lastName}}
+                    </h5>
+                    <h6>
+                        {{user.$university}}
+                    </h6>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="user.$keywords && user.$keywords.length || user.$expertise && user.$expertise.length" class="card-body">
+            <div class="keywords-list">
+                <button *ngFor="let keyword of user.$keywords" class="btn m-1" style="background-color: rgb(154, 212, 193); font-size: 0.75rem;">
+                    {{ keyword }}
+                </button>
+            </div>
+            <div class="expertise-list">
+                <button *ngFor="let keyword of user.$expertise" class="btn m-1" style="background-color: coral; font-size: 0.6rem;">
+                    {{ keyword }}
+                </button>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <button (click)="onProfileClick($event, i)" class="btn btn-primary">
+                View Profile
+            </button>
+        </div>
+    </div>
+</div>
