@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/Models/User';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -13,13 +13,12 @@ export class UsersComponent implements OnInit {
   users: User[] = [];
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void { }
 
   onProfileClick = (event: Event, index: number) => {
-    this.router.navigate(['user-detail/', { id: this.users[index].$id }]);
+    this.router.navigate(['user-detail'], { queryParams: { id: this.users[index].$id } });
   }
 }
